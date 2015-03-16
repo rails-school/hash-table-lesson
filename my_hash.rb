@@ -29,6 +29,7 @@ class MyHash
   end
 
   def slot_number(key)
+    # Collision resolution via open addressing / linear probing
     initial_slot_number = slot_number = hash(key)
     loop do
       kv_pair = @array[slot_number]
