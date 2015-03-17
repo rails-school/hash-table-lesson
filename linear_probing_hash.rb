@@ -1,4 +1,4 @@
-class MyHash
+class LinearProbingHash
   def initialize
     @size  = 10
     @array = []

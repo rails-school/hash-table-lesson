@@ -1,7 +1,7 @@
-require "./my_hash"
+require "./linear_probing_hash"
 require "pry"
 
-RSpec.describe MyHash do
+RSpec.describe LinearProbingHash do
   it "sets and retrieves some simple keys and values" do
     expect(subject["foo"]).to be_nil
 
