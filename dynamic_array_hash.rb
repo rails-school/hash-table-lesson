@@ -24,7 +24,12 @@ class DynamicArrayHash
     n = hash(key)
     dynamic_array = @array[n]
     if @array[n]
-      @array[n] |= [ [key, value] ]
+      kv_pair = @array[n].find { |el| el[0] == key }
+      if kv_pair
+        kv_pair[1] = value
+      else
+        @array[n] << [key, value]
+      end
     else
       @array[n] = [ [key, value] ]
     end

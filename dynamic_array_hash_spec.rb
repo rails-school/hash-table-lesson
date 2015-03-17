@@ -18,6 +18,16 @@ RSpec.describe DynamicArrayHash do
     expect(subject[3]).to eq("three")
   end
 
+  it "overwrites a previous value" do
+    expect(subject["foo"]).to be_nil
+
+    subject["foo"] = 3
+    expect(subject["foo"]).to eq(3)
+
+    subject["foo"] = :stewie
+    expect(subject["foo"]).to eq(:stewie)
+  end
+
   it "handles collisions" do
     expect(subject).to receive(:hash).with(3).and_return(5).at_least(:once)
     expect(subject).to receive(:hash).with(13).and_return(5).at_least(:once)
