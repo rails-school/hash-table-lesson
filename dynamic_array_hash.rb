@@ -1,6 +1,9 @@
 class DynamicArrayHash
+  LOAD_FACTOR = 0.7
+
   def initialize
     @size  = 10
+    @count = 0
     @array = []
   end
 
@@ -15,6 +18,9 @@ class DynamicArrayHash
   end
 
   def []=(key, value)
+    @count += 1
+    resize if (@count.to_f / @size > LOAD_FACTOR)
+
     n = hash(key)
     dynamic_array = @array[n]
     if @array[n]
@@ -32,9 +38,14 @@ class DynamicArrayHash
   def resize
     old_array = @array
     @array = []
+    @count = 0
     @size *= 2
-    old_array.each do |k, v|
-      @array[hash[v[0]]] = v
+    old_array.each do |dynamic_array|
+      if dynamic_array
+        dynamic_array.each do |k, v|
+          self[k] = v
+        end
+      end
     end
   end
 end

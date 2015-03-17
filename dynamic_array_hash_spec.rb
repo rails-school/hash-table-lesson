@@ -29,4 +29,18 @@ RSpec.describe DynamicArrayHash do
     expect(subject[3]).to eq("three")
     expect(subject[13]).to eq("thirteen")
   end
+
+  it "resizes automatically when the load factor is exceeded" do
+    expect(subject.instance_variable_get("@size")).to eq(10)
+
+    8.times do |i|
+      subject[i] = i.to_s
+    end
+
+    8.times do |i|
+      expect(subject[i]).to eq(i.to_s)
+    end
+
+    expect(subject.instance_variable_get("@size")).to eq(20)
+  end
 end
