@@ -29,8 +29,8 @@ RSpec.describe DynamicArrayHash do
   end
 
   it "handles collisions" do
-    expect(subject).to receive(:hash).with(3).and_return(5).at_least(:once)
-    expect(subject).to receive(:hash).with(13).and_return(5).at_least(:once)
+    expect(subject).to receive(:h).with(3).and_return(5).at_least(:once)
+    expect(subject).to receive(:h).with(13).and_return(5).at_least(:once)
 
     subject[3] = "three"
     expect(subject[3]).to eq("three")
